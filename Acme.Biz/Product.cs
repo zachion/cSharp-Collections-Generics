@@ -16,12 +16,22 @@ namespace Acme.Biz
         #region Constructors
         public Product()
         {
-            var colorOptions = new string[4];
-            colorOptions[0] = "Red";
-            colorOptions[1] = "Espresso";
-            colorOptions[2] = "White";
-            colorOptions[3] = "Navy";
-            Console.WriteLine(colorOptions);
+            string[] colorOptions = { "Red", "Espresso", "White", "Navy" };
+
+            for (int i = 0; i < colorOptions.Length; i++)
+            {
+                colorOptions[i] = colorOptions[i].ToLower();
+            }
+
+            for (int i = colorOptions.Length; i --> 0;)
+            {
+                colorOptions[i] = colorOptions[i].ToLower();
+            }
+
+            foreach (var color in colorOptions)
+            {
+                Console.WriteLine($"the color is: {color}");
+            }
 
         }
         public Product(int productId,
