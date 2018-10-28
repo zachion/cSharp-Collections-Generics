@@ -16,10 +16,17 @@ namespace Acme.Biz
         #region Constructors
         public Product()
         {
-            var colorOptions = new List<string>()
-                                { "Red", "Espresso", "White", "Navy"};
-
+            #region generic List
+            var colorOptions = new List<string>() { "Red", "Espresso", "White", "Navy" };
             Console.WriteLine(colorOptions);
+            #endregion
+
+            var states = new Dictionary<string, string>() {
+                {"CA","California" },
+                {"WA","Washinghton" },
+                {"NY","New York" }
+            };
+            Console.WriteLine(states);
         }
 
         public Product(int productId,
@@ -44,7 +51,8 @@ namespace Acme.Biz
         private string productName;
         public string ProductName
         {
-            get {
+            get
+            {
                 var formattedValue = productName?.Trim();
                 return formattedValue;
             }
@@ -70,7 +78,8 @@ namespace Acme.Biz
         private Vendor productVendor;
         public Vendor ProductVendor
         {
-            get {
+            get
+            {
                 if (productVendor == null)
                 {
                     productVendor = new Vendor();
@@ -93,7 +102,7 @@ namespace Acme.Biz
         {
             var message = "";
 
-            if(markupPercent <= 0m)
+            if (markupPercent <= 0m)
             {
                 message = "Invalid markup percentage";
             }

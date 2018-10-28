@@ -8,7 +8,7 @@ namespace Acme.Biz
 {
     public class VendorRepository
     {
-       private List<Vendor> vendors;
+        private List<Vendor> vendors;
 
         /// <summary>
         /// Retrieve one vendor.
@@ -33,7 +33,7 @@ namespace Acme.Biz
 
         public List<Vendor> Retrieve()
         {
-            if(vendors == null)
+            if (vendors == null)
             {
                 vendors = new List<Vendor>();
 
@@ -50,7 +50,7 @@ namespace Acme.Biz
             {
                 //Console.WriteLine(vendor);
             }
-                       
+
             return vendors;
         }
 
@@ -78,5 +78,44 @@ namespace Acme.Biz
 
             return success;
         }
+
+        public Dictionary<string, Vendor> RetrieveWithKeys()
+        {
+            var vendors = new Dictionary<string, Vendor>()
+            {
+                {"ABC", new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@gmail.com" } },
+                {"ANT", new Vendor(){ VendorId = 2, CompanyName = "Antisom", Email = "abc@gmail.com" }},
+                {"XYZ", new Vendor()  { VendorId = 3, CompanyName = "XYZ Corp", Email = "abc@gmail.com" }}
+            };
+
+            foreach (var element in vendors)
+            {
+                var vendor = element.Value;
+                var key = element.Key;
+
+                Console.WriteLine($"key: {key} Value: {vendor}");
+            }
+
+            //foreach (var vendor in vendors.Values)
+            //{
+            //    Console.WriteLine(vendor);
+            //}
+
+            //foreach (var companyName in vendors.Keys)
+            //{
+            //    Console.WriteLine(vendors[companyName]);
+            //}
+           
+            //Vendor vendor;
+            
+            //if (vendors.TryGetValue("ANT", out vendor))
+            //{
+            //    Console.WriteLine(vendor);
+            //}
+            
+            return vendors;
+        }
+
+
     }
 }
