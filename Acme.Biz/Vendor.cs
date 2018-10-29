@@ -111,7 +111,7 @@ namespace Acme.Biz
             var confirmations = new List<string>();
             var emailService = new EmailService();
 
-            Console.WriteLine(vendors.c);
+            Console.WriteLine(vendors.Count);
             foreach (var vendor in vendors)
             {
                 var subject = "Important message for: " + vendor.CompanyName;
