@@ -147,13 +147,15 @@ namespace Acme.Biz.Tests
         public void SendEmailTest()
         {
             var vendorRepository = new VendorRepository();
-            var vendors = vendorRepository.Retrieve();
+            var vendorsCollection = vendorRepository.Retrieve();
 
             var expected = new List<string>()
             {
                 "Message sent: Important message for: ABC Corp",
                 "Message sent: Important message for: Antisom"
             };
+            var vendors = vendorsCollection.ToList();
+
             Console.WriteLine(vendors.Count);
 
             var actual = Vendor.SendEmail(vendors, "Test Message");
@@ -165,13 +167,16 @@ namespace Acme.Biz.Tests
         public void SendEmailTestArray()
         {
             var vendorRepository = new VendorRepository();
-            var vendors = vendorRepository.RetrieveArray();
+            var vendorCollection = vendorRepository.Retrieve();
 
             var expected = new List<string>()
             {
                 "Message sent: Important message for: ABC Corp",
                 "Message sent: Important message for: Antisom"
             };
+
+            var vendors = vendorCollection.ToArray();
+
             Console.WriteLine(vendors.Length);
 
             var actual = Vendor.SendEmail(vendors, "Test Message");
@@ -183,14 +188,15 @@ namespace Acme.Biz.Tests
         public void SendEmailTestDictionary()
         {
             var vendorRepository = new VendorRepository();
-            var vendors = vendorRepository.RetrieveWithKeys();
+            var vendorsCollection = vendorRepository.Retrieve();
 
             var expected = new List<string>()
             {
                 "Message sent: Important message for: ABC Corp",
-                "Message sent: Important message for: Antisom",
-                "Message sent: Important message for: XYZ Corp"
+                "Message sent: Important message for: Antisom"
             };
+
+            var vendors = vendorsCollection.ToDictionary(v => v.CompanyName);
 
             var actual = Vendor.SendEmail(vendors.Values, "Test Message");
 
