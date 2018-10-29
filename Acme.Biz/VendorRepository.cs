@@ -31,14 +31,25 @@ namespace Acme.Biz
             return vendor;
         }
 
+
+        public Vendor[] RetrieveArray()
+        {
+            var vendors = new Vendor[2]
+            {
+                new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@gmail.com" },
+                new Vendor() { VendorId = 2, CompanyName = "Antisom", Email = "abc@gmail.com" }
+            };
+            return vendors;
+        }
+
         public List<Vendor> Retrieve()
         {
             if (vendors == null)
             {
                 vendors = new List<Vendor>();
 
-                vendors.Add(new Vendor() { VendorId = 1, CompanyName = "ABC", Email = "abc@gmail.com" });
-                vendors.Add(new Vendor() { VendorId = 2, CompanyName = "DFG", Email = "dfg@gmail.com" });
+                vendors.Add(new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@gmail.com" });
+                vendors.Add(new Vendor() { VendorId = 2, CompanyName = "Antisom", Email = "abc@gmail.com" });
             }
 
             for (int i = 0; i < vendors.Count(); i++)
@@ -105,14 +116,14 @@ namespace Acme.Biz
             //{
             //    Console.WriteLine(vendors[companyName]);
             //}
-           
+
             //Vendor vendor;
-            
+
             //if (vendors.TryGetValue("ANT", out vendor))
             //{
             //    Console.WriteLine(vendor);
             //}
-            
+
             return vendors;
         }
 

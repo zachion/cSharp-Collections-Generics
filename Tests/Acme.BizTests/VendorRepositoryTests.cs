@@ -31,8 +31,8 @@ namespace Acme.Biz.Tests
             var repository = new VendorRepository();
             var expected = new List<Vendor>();
 
-            expected.Add(new Vendor() { VendorId = 1, CompanyName = "ABC", Email = "abc@gmail.com" });
-            expected.Add(new Vendor() { VendorId = 2, CompanyName = "DFG", Email = "dfg@gmail.com" });
+            expected.Add(new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@gmail.com" });
+            expected.Add(new Vendor() { VendorId = 2, CompanyName = "Antisom", Email = "abc@gmail.com" });
 
             var actual = repository.Retrieve();
 

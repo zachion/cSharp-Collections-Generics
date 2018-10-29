@@ -82,12 +82,12 @@ namespace Acme.Biz.Tests
             var product = new Product(1, "Saw", "");
             var expected = new OperationResult<bool>(true,
                 "Order from Acme, Inc\r\nProduct: Saw\r\nQuantity: 12" +
-                "\r\nDeliver By: " + new DateTime(2018,10,29).ToString("d") +
+                "\r\nDeliver By: " + new DateTime(2018, 12, 29).ToString("d") +
                 "\r\nInstructions: standard delivery");
 
             // Act
             var actual = vendor.PlaceOrder(product, 12,
-                new DateTimeOffset(2018, 10, 29, 0, 0, 0, new TimeSpan(-7, 0, 0)));
+                new DateTimeOffset(2018, 12, 29, 0, 0, 0, new TimeSpan(-7, 0, 0)));
 
             // Assert
             Assert.AreEqual(expected.Result, actual.Result);
@@ -141,6 +141,23 @@ namespace Acme.Biz.Tests
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void SendEmailTest()
+        {
+            var vendorRepository = new VendorRepository();
+            var vendors = vendorRepository.Retrieve();
+
+            var expected = new List<string>()
+            {
+                "Message sent: Important message for: ABC Corp",
+                "Message sent: Important message for: Antisom"
+            };
+
+            var actual = Vendor.SendEmail(vendors, "Test Message");
+
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
