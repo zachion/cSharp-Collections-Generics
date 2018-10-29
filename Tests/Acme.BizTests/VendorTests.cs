@@ -155,7 +155,7 @@ namespace Acme.Biz.Tests
                 "Message sent: Important message for: Antisom"
             };
             var vendors = vendorsCollection.ToList();
-
+            
             Console.WriteLine(vendors.Count);
 
             var actual = Vendor.SendEmail(vendors, "Test Message");
