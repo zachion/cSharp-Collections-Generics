@@ -55,7 +55,22 @@ namespace Acme.Biz
             return vendors;
         }
 
+        public IEnumerable<Vendor> RetrieveAll()
+        {
 
+            var vendors = new List<Vendor>() {
+                            new Vendor(){ VendorId = 1, CompanyName = "ABC Corp", Email="abc@gmail.com" },
+                            new Vendor(){ VendorId = 2, CompanyName = "Antisom", Email = "abc@gmail.com"},
+                            new Vendor(){ VendorId = 3, CompanyName = "EFG Ltd", Email="efg@gmail.com" },
+                            new Vendor(){ VendorId = 4, CompanyName = "HIJ AG", Email="hij@gmail.com" },
+                            new Vendor(){ VendorId = 5, CompanyName = "Amalgamated", Email="amal@gmail.com" },
+                            new Vendor() { VendorId = 6, CompanyName = "Toy Blocks Inc", Email = "toy@gmail.com" },
+                            new Vendor() { VendorId = 7, CompanyName = "Home Toys Inc", Email = "home@gmail.com" },
+                            new Vendor() { VendorId = 8, CompanyName = "Car Toys", Email = "car@abc.com" },
+                            new Vendor() { VendorId = 9, CompanyName = "Toys for Fun", Email = "fun@abc.com" }
+            };
+            return vendors;
+        }
 
         public T RetrieveValue<T>(string sql, T defaultValue)
         {
@@ -96,6 +111,7 @@ namespace Acme.Biz
                 yield return vendor;
             }
         }
+
 
     }
 }

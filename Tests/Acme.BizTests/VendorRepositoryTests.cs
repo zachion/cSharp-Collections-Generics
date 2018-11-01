@@ -36,6 +36,8 @@ namespace Acme.Biz.Tests
 
             var actual = repository.Retrieve();
 
+
+
             CollectionAssert.AreEqual(expected, actual.ToList());
         }
 
@@ -55,9 +57,31 @@ namespace Acme.Biz.Tests
                 Console.WriteLine(item);
             }
             var actual = vendorIterator.ToList();
-            
+
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void RetrieveAllTest()
+        {
+            var repository = new VendorRepository();
+            var expected = new List<Vendor>();
+
+            expected.Add(new Vendor() { VendorId = 6, CompanyName = "Toy Blocks Inc", Email = "toy@gmail.com" });
+            expected.Add(new Vendor() { VendorId = 7, CompanyName = "Home Toys Inc", Email = "home@gmail.com" });
+            expected.Add(new Vendor() { VendorId = 8, CompanyName = "Car Toys", Email = "car@abc.com" });
+            expected.Add(new Vendor() { VendorId = 9, CompanyName = "Toys for Fun", Email = "fun@abc.com" });
+
+            var vendors = repository.RetrieveAll();
+
+            var vendorQuery = from v in vendors
+                              where v.CompanyName.Contains("Toy")
+                              orderby v.CompanyName
+                              select v;
+
+            var vendorQuery2 = vendors.Where(v => v.CompanyName.Contains("Toy")).OrderBy(o => o.CompanyName);
+
+            CollectionAssert.AreEqual(expected, vendorQuery2.ToList());
+        }
     }
 }
